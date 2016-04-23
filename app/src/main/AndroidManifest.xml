@@ -27,10 +27,7 @@
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <!-- 位置情報 GPSから -->
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!-- 位置情報 ネットワークから -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!-- これは何だろう？？？ -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES" />
 </manifest>

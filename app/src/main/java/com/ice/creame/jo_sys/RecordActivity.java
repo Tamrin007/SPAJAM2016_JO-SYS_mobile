@@ -61,7 +61,7 @@ public class RecordActivity extends AppCompatActivity {
         });
 
         Button recordbutton = (Button) findViewById(R.id.recordbutton);
-        recordbutton.setText("とる");
+        recordbutton.setText("録音開始");
         recordbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startRecord();
@@ -70,7 +70,7 @@ public class RecordActivity extends AppCompatActivity {
         });
 
         Button stopbutton = (Button) findViewById(R.id.stopbutton);
-        stopbutton.setText("ストップ");
+        stopbutton.setText("録音停止");
         stopbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (mMediaRecorder != null) {
