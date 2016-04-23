@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <item android:state_checked = "false"
+        android:drawable ="@drawable /abc_ic_voice_search_api_mtrl_alpha"
+        android:backgroundColor= "#22b14c"></item>
+        <item android:state_checked ="true"
+            android:text = "recording"
+            android:textColor = "#ffff"></item>
+    </LinearLayout>
+ </selector>
