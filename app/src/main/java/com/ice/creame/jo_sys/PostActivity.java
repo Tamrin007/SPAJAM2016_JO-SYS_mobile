@@ -219,8 +219,9 @@ public class PostActivity extends AppCompatActivity implements LocationListener 
 
             // データを投げる
             OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
-            out.write("user_id:1");
+//            out.write("user_id:1");
             out.flush();
+
 
 //            InputStream in = new FileInputStream(mFilePath);
 //            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
