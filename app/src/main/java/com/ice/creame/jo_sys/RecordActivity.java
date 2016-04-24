@@ -39,10 +39,12 @@ public class RecordActivity extends AppCompatActivity {
 
         Button postbutton = (Button) findViewById(R.id.postbutton);
         postbutton.setText("投稿");
+        postbutton.setVisibility(View.INVISIBLE);
         postbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 //遷移
+
                 intent.setClassName("com.ice.creame.jo_sys", "com.ice.creame.jo_sys.PostActivity");/* koko */
                 startActivity(intent);
                 RecordActivity.this.finish();
@@ -53,12 +55,14 @@ public class RecordActivity extends AppCompatActivity {
 
         Button initbutton = (Button) findViewById(R.id.initbutton);
         initbutton.setText("再生");
+        initbutton.setVisibility(View.INVISIBLE);
         initbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // 再生用スレッドを起こす
                 startPlay();
             }
         });
+
 
         Button recordbutton = (Button) findViewById(R.id.recordbutton);
         recordbutton.setText("録音開始");
@@ -77,6 +81,10 @@ public class RecordActivity extends AppCompatActivity {
                     mMediaRecorder.stop();
                     mMediaRecorder.reset();
                 }
+                Button initbutton = (Button) findViewById(R.id.initbutton);
+                Button postbutton = (Button) findViewById(R.id.postbutton);
+                initbutton.setVisibility(View.VISIBLE);
+                postbutton.setVisibility(View.VISIBLE);
 
             }
         });

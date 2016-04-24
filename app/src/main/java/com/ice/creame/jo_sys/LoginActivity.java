@@ -17,30 +17,13 @@ import static com.ice.creame.jo_sys.DBHelper.*;
 /**
  * Created by hideya on 2016/04/23.
  */
-public class LoginActivity extends AppCompatActivity {
-
-    SQLiteDatabase db; //データベースオブジェクト
-    String u = "init";
-    String p = "init";
-
+public class LoginActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        /* データベースオブジェクトの取得 */
-        DBHelper dbHelper = new DBHelper(this);
-        db = dbHelper.getWritableDatabase();
-
-
-        try {
-            u = readDB("0", "testtable", db)[1];
-            p = readDB("1", "testtable", db)[1];
-
-        } catch (Exception e) {
-            Log.d("deb", "dbError1");
-        }
 
         if(u.equals("init")){
 
@@ -56,6 +39,8 @@ public class LoginActivity extends AppCompatActivity {
 
             EditText et = (EditText) findViewById(R.id.useredit);
             EditText et2 = (EditText) findViewById(R.id.passedit);
+            et.setWidth(500);
+            et2.setWidth(500);
             //入力文字数制限
             InputFilter[] _inputFilter = new InputFilter[1];
             _inputFilter[0] = new InputFilter.LengthFilter(8); //文字数指定
@@ -82,17 +67,6 @@ public class LoginActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             Log.d("deb", "dbError2");
                         }
-
-                        try {
-                            u = readDB("0", "testtable", db)[1];
-                            p = readDB("1", "testtable", db)[1];
-                            Log.d("deb", "check" + u);
-                            Log.d("deb", "check" + p);
-
-                        } catch (Exception e) {
-                            Log.d("deb", "dbError3");
-                        }
-
                         Intent intent = new Intent();
                         //遷移
                         intent.setClassName("com.ice.creame.jo_sys", "com.ice.creame.jo_sys.MainActivity");

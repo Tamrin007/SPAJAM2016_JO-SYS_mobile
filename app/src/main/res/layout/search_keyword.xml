@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="right"
+        android:layout_weight="0.1"
+        android:id="@+id/back_keyword" >
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="◀back"
+            android:id="@+id/bt_back_keyword"
+            android:background="#22b14c"
+            android:textColor="#ffff"
+            android:gravity="left"
+            android:textSize="30px" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:weightSum="1"
+        android:id="@+id/search_keyword"
+        android:gravity="center">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/text_search_keyword"
+            android:layout_weight="0.8" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/bt_search_keyword"
+            android:layout_weight="0.1"
+            android:background="#22b14c"
+            android:layout_margin="5dp"
+            android:src="@drawable/abc_ic_search_api_mtrl_alpha" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:id="@+id/result_keyword">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView_result_keyword">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/element_keyword"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="title"
+                    android:id="@+id/text_reult_keyword"
+                    android:layout_weight="0.8"
+                    android:textSize="30px" />
+
+                <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/bt_sound_keyword"
+                    android:layout_weight="0.1"
+                    android:background="#22b14c"
+                    android:src="@drawable/bt_sounds01"
+                    android:scaleType="fitCenter" />
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.2"
+        android:weightSum="1"
+        android:gravity="center"
+        android:id="@+id/record_keyword" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:weightSum="1"
+            android:gravity="center"
+            android:id="@+id/record2_keyword" >
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/bt_record_keyword"
+                android:layout_weight="0.7"
+                android:layout_gravity="center"
+                android:background="#22b14c"
+                android:longClickable="true"
+                android:src="@drawable/abc_ic_voice_search_api_mtrl_alpha"
+                android:scaleType="fitCenter" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

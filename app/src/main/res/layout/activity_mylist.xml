@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.ice.creame.jo_sys.MainActivity">
+    tools:context="com.ice.creame.jo_sys.MainActivity"
+    android:background="#ffffff">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -19,7 +20,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="92dp"
+            android:layout_height="74dp"
             android:layout_gravity="center_horizontal|top"
             android:background="#22b14c">
 
@@ -28,61 +29,48 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Large Text"
-                android:id="@+id/logintext"
+                android:id="@+id/mylisttext"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="333dp"
+            android:layout_height="366dp"
             android:layout_gravity="center"
             android:background="#22b14c">
 
-            <TextView
+            <ScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text"
-                android:id="@+id/usertext"
+                android:id="@+id/scrollView"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="35dp" />
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text"
-                android:id="@+id/passtext"
-                android:layout_below="@+id/usertext"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="65dp" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/ll"></LinearLayout>
+            </ScrollView>
+        </RelativeLayout>
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/useredit"
-                android:layout_below="@+id/usertext"
-                android:layout_alignParentStart="true" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:ems="10"
-                android:id="@+id/passedit"
-                android:layout_below="@+id/passtext"
-                android:layout_alignParentStart="true" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="73dp"
+            android:layout_gravity="center_horizontal|bottom"
+            android:background="#22b14c">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Button"
-                android:id="@+id/loginbutton"
-                android:layout_alignParentBottom="true"
+                android:id="@+id/cancelbutton"
+                android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
-
         </RelativeLayout>
+
     </FrameLayout>
 </RelativeLayout>

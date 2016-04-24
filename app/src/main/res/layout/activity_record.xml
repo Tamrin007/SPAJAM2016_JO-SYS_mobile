@@ -7,20 +7,21 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.ice.creame.jo_sys.MainActivity">
+    tools:context="com.ice.creame.jo_sys.MainActivity"
+    android:background="#ffffff">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:background="#000000">
+        android:background="#ffffff">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="84dp"
+            android:layout_height="53dp"
             android:layout_gravity="center_horizontal|top"
-            android:background="#ff0000">
+            android:background="#22b14c">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -33,9 +34,9 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="84dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|bottom"
-            android:background="#ff0000">
+            android:background="#22b14c">
 
             <Button
                 android:layout_width="wrap_content"
@@ -49,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="332dp"
             android:layout_gravity="center"
-            android:background="#1100ff">
+            android:background="#ffffff">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -62,7 +63,7 @@
                     android:text="New Button"
                     android:id="@+id/stopbutton"
                     android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_alignStart="@+id/initbutton" />
 
                 <Button
                     android:layout_width="wrap_content"
@@ -78,7 +79,7 @@
                     android:text="New Button"
                     android:id="@+id/initbutton"
                     android:layout_above="@+id/recordbutton"
-                    android:layout_alignStart="@+id/recordbutton" />
+                    android:layout_centerHorizontal="true" />
 
                 <Button
                     android:layout_width="wrap_content"
@@ -86,8 +87,11 @@
                     android:text="New Button"
                     android:id="@+id/postbutton"
                     android:layout_above="@+id/initbutton"
-                    android:layout_alignStart="@+id/initbutton"
-                    android:layout_marginBottom="51dp" />
+                    android:layout_centerHorizontal="true" />
+
+
+
+
             </RelativeLayout>
         </FrameLayout>
     </FrameLayout>

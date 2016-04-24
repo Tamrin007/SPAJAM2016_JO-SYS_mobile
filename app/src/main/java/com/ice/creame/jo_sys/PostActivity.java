@@ -1,15 +1,16 @@
 package com.ice.creame.jo_sys;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -17,11 +18,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import android.location.Geocoder;
 import android.widget.Toast;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 import java.util.Locale;
 
@@ -34,11 +38,17 @@ public class PostActivity extends AppCompatActivity implements LocationListener 
     private LocationManager locationManager;
     String latitude;
     String longitude;
+    Globals globals;
+
+    String result = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
+
+        globals = (Globals) this.getApplication();
 
         /* GPS */
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -60,7 +70,7 @@ public class PostActivity extends AppCompatActivity implements LocationListener 
         localtitletext.setText("位置情報");
 
         TextView localtext = (TextView) findViewById(R.id.localtext);
-        localtext.setText("位置情報取得中…");
+        localtext.setText(globals.address);
 
         TextView posttext = (TextView) findViewById(R.id.posttext);
         posttext.setText("投稿情報入力");
@@ -70,9 +80,10 @@ public class PostActivity extends AppCompatActivity implements LocationListener 
 
         /* 入力部 */
         EditText et = (EditText) findViewById(R.id.titleedit);
+        et.setWidth(1000);
 
         EditText et2 = (EditText) findViewById(R.id.comentedit);
-
+        et2.setWidth(1000);
 
 
         TextView comenttext = (TextView) findViewById(R.id.comenttext);
@@ -87,9 +98,18 @@ public class PostActivity extends AppCompatActivity implements LocationListener 
 
                 EditText et2 = (EditText) findViewById(R.id.comentedit);
 
+                //空白のとき
                 if (et.getText().toString().equals("") || et2.getText().toString().equals("")) {
-                    //音の再生
                     Toast.makeText(PostActivity.this, "項目を入力してください", Toast.LENGTH_SHORT).show();
+                }else {
+
+                    doPost();
+                    Toast.makeText(PostActivity.this, "投稿しました", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent();
+                    //遷移
+                    intent.setClassName("com.ice.creame.jo_sys", "com.ice.creame.jo_sys.MainActivity");
+                    startActivity(intent);
+                    PostActivity.this.finish();
                 }
 
             }
@@ -130,6 +150,9 @@ public class PostActivity extends AppCompatActivity implements LocationListener 
         latitude = Double.toString(location.getLatitude());
         longitude = Double.toString(location.getLongitude());
 
+        globals.latitude = latitude;
+        globals.longitude = longitude;
+
 
         // 住所の取得
         StringBuffer strAddr = new StringBuffer();
@@ -145,10 +168,10 @@ public class PostActivity extends AppCompatActivity implements LocationListener 
                 }
             }
 
-            Log.d("deb", latitude);
-            Log.d("deb", longitude);
+            Log.d("deb", "post:" + latitude);
+            Log.d("deb", "post:" + longitude);
             Log.d("deb", strAddr.toString());
-
+            globals.address = strAddr.toString();
 
 
         } catch (IOException e) {
@@ -178,4 +201,41 @@ public class PostActivity extends AppCompatActivity implements LocationListener 
 
     }
 
+    private void doPost() {
+
+        String fileName = "hoge.3gp";
+        String mFilePath = Environment.getExternalStorageDirectory() + "/" + fileName;
+
+        try {
+
+            URL url = new URL("http://sounds-goood.herokuapp.com/ ");
+            HttpURLConnection http = (HttpURLConnection) url.openConnection();
+            http.setRequestMethod("POST");
+            http.setRequestProperty("Content-Type", "application/octet-stream");
+            http.setDoInput(true);
+            http.setDoOutput(true);
+            http.setUseCaches(false);
+            http.connect();
+
+            // データを投げる
+            OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
+            out.write("user_id:1");
+            out.flush();
+
+//            InputStream in = new FileInputStream(mFilePath);
+//            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+//            result = reader.readLine();
+
+//            reader.close();
+//            in.close();
+            out.close();
+            http.disconnect();
+            Log.d("deb", result);
+
+        } catch (Exception e) {
+            result = "Connection Error.";
+            Log.d("Connection Error", e.getMessage());
+        }
+
+    }
 }
