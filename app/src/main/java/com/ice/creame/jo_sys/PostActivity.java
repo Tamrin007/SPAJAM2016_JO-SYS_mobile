@@ -21,9 +21,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.PrintStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
@@ -41,7 +45,8 @@ public class PostActivity extends AppCompatActivity implements LocationListener 
     Globals globals;
 
     String result = "";
-
+    HttpURLConnection urlCon = null;
+    InputStream in = null; // URL連携した戻り値を取得して保持する用
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -204,39 +209,85 @@ public class PostActivity extends AppCompatActivity implements LocationListener 
     private void doPost() {
 
         String fileName = "hoge.3gp";
-        String mFilePath = Environment.getExternalStorageDirectory() + "/" + fileName;
+//        String mFilePath = Environment.getExternalStorageDirectory() + "/" + fileName;
 
         try {
+            // httpコネクションを確立し、urlを叩いて情報を取得
+            URL url = new URL("http://sounds-goood.herokuapp.com/");
+            urlCon = (HttpURLConnection)url.openConnection();
+            urlCon.setRequestMethod("POST");
+            urlCon.setDoOutput(true); // POSTでデータ送信可能に
 
-            URL url = new URL("http://sounds-goood.herokuapp.com/ ");
-            HttpURLConnection http = (HttpURLConnection) url.openConnection();
-            http.setRequestMethod("POST");
-            http.setRequestProperty("Content-Type", "application/octet-stream");
-            http.setDoInput(true);
-            http.setDoOutput(true);
-            http.setUseCaches(false);
-            http.connect();
+            // POSTパラメータ
+            String postDataSample = "user_id=1&user_name=aaa";
 
-            // データを投げる
-            OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
-//            out.write("user_id:1");
-            out.flush();
+            // PrintStreamを利用
+            PrintStream ps = new PrintStream(urlCon.getOutputStream());
+            ps.print(postDataSample);
+            ps.close();
 
+            // データを取得
+            Toast.makeText(this, Integer.toString(urlCon.getResponseCode()), Toast.LENGTH_SHORT).show(); // -->405(Method not allowed)であったため、inputStreamが取得出来なかったみたい。
+            in = urlCon.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
 
-//            InputStream in = new FileInputStream(mFilePath);
-//            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-//            result = reader.readLine();
+            // InputStreamからbyteデータを取得するための変数
+            StringBuffer bufStr = new StringBuffer();
+            String temp = null;
 
-//            reader.close();
-//            in.close();
-            out.close();
-            http.disconnect();
-            Log.d("deb", result);
+            // InputStreamからのデータを文字列として取得する
+            while((temp = br.readLine()) != null) {
+                bufStr.append(temp);
+            }
 
-        } catch (Exception e) {
-            result = "Connection Error.";
-            Log.d("Connection Error", e.getMessage());
+            // 結果をテキストビューに設定
+
+        } catch (IOException ioe ) {
+            Log.d(this.getClass().toString(),ioe.toString());
+            Toast.makeText(this, "IOExceptionが発生しました。", Toast.LENGTH_SHORT).show();
+
+        } finally {
+
+            try {
+                urlCon.disconnect();
+                in.close();
+
+            } catch (IOException ioe ) {
+                ioe.printStackTrace();
+            }
         }
+
+//        try {
+//
+//            URL url = new URL("http://sounds-goood.herokuapp.com/ ");
+//            HttpURLConnection http = (HttpURLConnection) url.openConnection();
+//            http.setRequestMethod("POST");
+//            http.setRequestProperty("Content-Type", "application/octet-stream");
+//            http.setDoInput(true);
+//            http.setDoOutput(true);
+//            http.setUseCaches(false);
+//            http.connect();
+//
+//            // データを投げる
+//            OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
+////            out.write("user_id:1");
+//            out.flush();
+//
+//
+////            InputStream in = new FileInputStream(mFilePath);
+////            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+////            result = reader.readLine();
+//
+////            reader.close();
+////            in.close();
+//            out.close();
+//            http.disconnect();
+//            Log.d("deb", result);
+//
+//        } catch (Exception e) {
+//            result = "Connection Error.";
+////            Log.d("Connection Error", e.getMessage());
+//        }
 
     }
 }

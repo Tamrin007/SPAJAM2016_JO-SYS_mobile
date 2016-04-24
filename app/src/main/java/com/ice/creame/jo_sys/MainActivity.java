@@ -43,7 +43,6 @@ public class MainActivity extends BaseActivity implements LocationListener {
     String longitude;
     Globals globals;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +69,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
 
         /* ユーザ情報送信 */
         try {
-            new HttpPostTask().execute(new URL("aaaaaaaaaaaaaaaaaaaaaa"));
+            new HttpPostTask().execute(new URL("http://sounds-goood.herokuapp.com/"));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -234,13 +233,11 @@ public class MainActivity extends BaseActivity implements LocationListener {
     }
 
     @Override
-
     public void onProviderDisabled(String provider) {
 
     }
 
     @Override
-
     public void onStatusChanged(String provider, int status, Bundle extras) {
 
     }
