@@ -9,11 +9,14 @@ import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,7 +27,7 @@ import java.io.IOException;
  * Created by hideya on 2016/04/23.
  */
 public class RecordActivity extends AppCompatActivity {
-
+    Globals globals;
     private MediaRecorder mMediaRecorder;
     private MediaPlayer mMediaPlayer;
     private String mFilePath;
@@ -33,6 +36,8 @@ public class RecordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
+//        setContentView(R.layout.recording2);
+        globals = (Globals) this.getApplication();
 
         TextView recordtext = (TextView) findViewById(R.id.recordtext);
         recordtext.setText("音声録音");
@@ -42,6 +47,8 @@ public class RecordActivity extends AppCompatActivity {
         postbutton.setVisibility(View.INVISIBLE);
         postbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                globals.postFilePath = mFilePath;
+
                 Intent intent = new Intent();
                 //遷移
 
@@ -68,7 +75,19 @@ public class RecordActivity extends AppCompatActivity {
         recordbutton.setText("録音開始");
         recordbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startRecord();
+//                if(recordbutton.getText().equals("START")){
+                    startRecord();
+//                }else{
+//                    if (mMediaRecorder != null) {
+//                        mMediaRecorder.stop();
+//                        mMediaRecorder.reset();
+//                    }
+//                    Button initbutton = (Button) findViewById(R.id.initbutton);
+//                    Button postbutton = (Button) findViewById(R.id.postbutton);
+//                    initbutton.setVisibility(View.VISIBLE);
+//                    postbutton.setVisibility(View.VISIBLE);
+//                }
+//                startRecord();
 
             }
         });
@@ -139,6 +158,8 @@ public class RecordActivity extends AppCompatActivity {
         String fileName = "hoge.3gp";
         mFilePath = Environment.getExternalStorageDirectory() + "/" + fileName;
         mMediaRecorder.setOutputFile(mFilePath);
+
+
 
         try {
             mMediaRecorder.prepare();

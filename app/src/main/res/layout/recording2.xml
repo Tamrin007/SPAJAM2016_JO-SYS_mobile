@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="#c3c3c3">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.1"
+        android:id="@+id/back_recording" >
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="◀back"
+            android:id="@+id/returnbutton"
+            android:background="#22b14c"
+            android:textColor="#ffff"
+            android:gravity="left"
+            android:textSize="30px" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:id="@+id/image_recording"
+        android:background="@drawable/microhm1">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:weightSum="1"
+        android:id="@+id/time_recording"
+        android:background="#ffff">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="time"
+            android:id="@+id/text_time_recording"
+            android:layout_weight="0.3"
+            android:textSize="40px"
+            android:textColor="#22b14c"
+            android:gravity="center_vertical|right" />
+
+        <Chronometer
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/chronometer_recording"
+            android:layout_weight="0.7"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:textSize="40px" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.05"
+        android:background="#7f7f7f" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:id="@+id/button_recording"
+        android:weightSum="1"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="New Button"
+            android:id="@+id/initbutton"
+            android:layout_weight="0.2"
+            android:background="#22b14c"
+            android:layout_margin="5dp"
+            android:src="@drawable/abc_ic_go_search_api_mtrl_alpha"
+            android:scaleType="fitCenter" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.05" />
+
+        <ToggleButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="#22b14c"
+            android:text="New ToggleButton"
+            android:checked="false"
+            android:layout_weight="0.2"
+            android:textOn="stop"
+            android:textOff="start"
+            android:textColor="#ffff"
+            android:id="@+id/recordbutton" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.05" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="contribute"
+            android:id="@+id/postbutton"
+            android:layout_weight="0.3"
+            android:background="#22b14c"
+            android:layout_margin="5dp"
+            android:textColor="#ffff" />
+    </LinearLayout>
+
+</LinearLayout>

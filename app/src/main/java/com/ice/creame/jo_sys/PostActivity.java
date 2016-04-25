@@ -3,6 +3,7 @@ package com.ice.creame.jo_sys;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,11 +24,13 @@ import android.widget.Toast;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -47,11 +51,13 @@ public class PostActivity extends AppCompatActivity implements LocationListener 
     String result = "";
     HttpURLConnection urlCon = null;
     InputStream in = null; // URL連携した戻り値を取得して保持する用
+    boolean uploaded;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post);
+//        setContentView(R.layout.activity_post);
+        setContentView(R.layout.contribute2);
 
         globals = (Globals) this.getApplication();
 
@@ -71,17 +77,18 @@ public class PostActivity extends AppCompatActivity implements LocationListener 
         locationManager.requestLocationUpdates(provider, 0, 0, this);
 
 
-        TextView localtitletext = (TextView) findViewById(R.id.localtitletext);
-        localtitletext.setText("位置情報");
+//        TextView localtitletext = (TextView) findViewById(R.id.localtitletext);
+//        localtitletext.setText("位置情報");
 
         TextView localtext = (TextView) findViewById(R.id.localtext);
+        localtext.setTextColor(Color.BLACK);
         localtext.setText(globals.address);
 
-        TextView posttext = (TextView) findViewById(R.id.posttext);
-        posttext.setText("投稿情報入力");
+//        TextView posttext = (TextView) findViewById(R.id.posttext);
+//        posttext.setText("投稿情報入力");
 
-        TextView titletext = (TextView) findViewById(R.id.titletext);
-        titletext.setText("タイトル");
+//        TextView titletext = (TextView) findViewById(R.id.titletext);
+//        titletext.setText("タイトル");
 
         /* 入力部 */
         EditText et = (EditText) findViewById(R.id.titleedit);
@@ -91,8 +98,8 @@ public class PostActivity extends AppCompatActivity implements LocationListener 
         et2.setWidth(1000);
 
 
-        TextView comenttext = (TextView) findViewById(R.id.comenttext);
-        comenttext.setText("コメント");
+//        TextView comenttext = (TextView) findViewById(R.id.comenttext);
+//        comenttext.setText("コメント");
 
 
         Button postbutton2 = (Button) findViewById(R.id.postbutton2);
@@ -108,7 +115,7 @@ public class PostActivity extends AppCompatActivity implements LocationListener 
                     Toast.makeText(PostActivity.this, "項目を入力してください", Toast.LENGTH_SHORT).show();
                 }else {
 
-                    doPost();
+                    doPost(et.getText().toString(), et2.getText().toString());
                     Toast.makeText(PostActivity.this, "投稿しました", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent();
                     //遷移
@@ -121,7 +128,7 @@ public class PostActivity extends AppCompatActivity implements LocationListener 
         });
 
         Button cancelbutton = (Button) findViewById(R.id.cancelbutton);
-        cancelbutton.setText("キャンセル");
+//        cancelbutton.setText("キャンセル");
         cancelbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -206,9 +213,82 @@ public class PostActivity extends AppCompatActivity implements LocationListener 
 
     }
 
+    private void doPost(final String title, final String comment){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                postUrlConnection(title, comment);
+                uploaded = true;
+            }
+        }).start();
+        while(!uploaded);
+    }
+
+    private void postUrlConnection(String title, String comment) {
+        String data = "";
+
+        try{
+
+            FileInputStream fileInputStream = new FileInputStream(globals.postFilePath);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream));
+            String line;
+            byte[] tmp;
+            while((line = reader.readLine()) != null){
+                line = Base64.encodeToString(line.getBytes(), Base64.DEFAULT);
+                //data += line;
+            }
+            data="AAAAGGZ0eXAzZ3A0AAAAAGlzb20zZ3A0AAA";
+            reader.close();
+        }catch(Exception e){
+
+        }
+
+
+        try {
+            // httpコネクションを確立し、urlを叩いて情報を取得
+            URL url = new URL("http://sounds-goood.herokuapp.com/post_sound");
+            urlCon = (HttpURLConnection)url.openConnection();
+            urlCon.setRequestMethod("POST");
+            urlCon.setDoOutput(true); // POSTでデータ送信可能に
+
+
+            // POSTパラメータ
+            String postData1 = "data=";
+            String postData2 = "&title=" + title + "&comment=" + comment + "&lan=" + latitude + "&lon=" + longitude + "&user_id=" + 8;
+
+
+            String para = postData1 + data + postData2;
+            Log.d("ian", para);
+            // OutPutStreamWriterを利用
+            OutputStreamWriter writer = new OutputStreamWriter(urlCon.getOutputStream());
+            writer.write(para);
+            writer.flush();
+
+            Log.d("ian", "hi");
+            String line;
+            BufferedReader reader = new BufferedReader(new InputStreamReader(urlCon.getInputStream()));
+            while((line = reader.readLine()) != null){
+                Log.d("ian", "jj");
+                Log.d("ian", line);
+            };
+
+
+            writer.close();
+            reader.close();
+            urlCon.disconnect();
+
+            Log.d("ian", "fin");
+            // 結果をテキストビューに設定
+
+        } catch (Exception e ) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /* おれが作った屑ポスト */
     private void doPost() {
 
-        String fileName = "hoge.3gp";
 //        String mFilePath = Environment.getExternalStorageDirectory() + "/" + fileName;
 
         try {
@@ -245,9 +325,7 @@ public class PostActivity extends AppCompatActivity implements LocationListener 
         } catch (IOException ioe ) {
             Log.d(this.getClass().toString(),ioe.toString());
             Toast.makeText(this, "IOExceptionが発生しました。", Toast.LENGTH_SHORT).show();
-
         } finally {
-
             try {
                 urlCon.disconnect();
                 in.close();
@@ -256,38 +334,6 @@ public class PostActivity extends AppCompatActivity implements LocationListener 
                 ioe.printStackTrace();
             }
         }
-
-//        try {
-//
-//            URL url = new URL("http://sounds-goood.herokuapp.com/ ");
-//            HttpURLConnection http = (HttpURLConnection) url.openConnection();
-//            http.setRequestMethod("POST");
-//            http.setRequestProperty("Content-Type", "application/octet-stream");
-//            http.setDoInput(true);
-//            http.setDoOutput(true);
-//            http.setUseCaches(false);
-//            http.connect();
-//
-//            // データを投げる
-//            OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
-////            out.write("user_id:1");
-//            out.flush();
-//
-//
-////            InputStream in = new FileInputStream(mFilePath);
-////            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-////            result = reader.readLine();
-//
-////            reader.close();
-////            in.close();
-//            out.close();
-//            http.disconnect();
-//            Log.d("deb", result);
-//
-//        } catch (Exception e) {
-//            result = "Connection Error.";
-////            Log.d("Connection Error", e.getMessage());
-//        }
 
     }
 }

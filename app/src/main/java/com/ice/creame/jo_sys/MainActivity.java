@@ -46,7 +46,7 @@ public class MainActivity extends BaseActivity implements LocationListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.menu);
+        setContentView(R.layout.menu2);
 
         globals = (Globals) this.getApplication();
 
@@ -83,7 +83,6 @@ public class MainActivity extends BaseActivity implements LocationListener {
         mapbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-
                 Intent intent = new Intent();
                 //遷移
                 intent.setClassName("com.ice.creame.jo_sys", "com.ice.creame.jo_sys.MapActivity");
@@ -91,7 +90,6 @@ public class MainActivity extends BaseActivity implements LocationListener {
                 MainActivity.this.finish();
 
             }
-
         });
 
         ImageButton mylistbutton = (ImageButton) findViewById(R.id.mylistbutton);

@@ -58,9 +58,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return str;
     }
 
-
-
-
     //データベースへの書き込み
     public static void writeDB(String id, String date, String db_table, SQLiteDatabase db) throws Exception {
 

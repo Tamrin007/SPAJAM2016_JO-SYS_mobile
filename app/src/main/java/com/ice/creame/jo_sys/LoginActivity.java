@@ -2,6 +2,7 @@ package com.ice.creame.jo_sys;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
@@ -22,25 +23,27 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.login2);
 
 
         if(u.equals("init")){
 
-            TextView logintext = (TextView) findViewById(R.id.logintext);
-            logintext.setText("ユーザー登録");
-
-            TextView usertext = (TextView) findViewById(R.id.usertext);
-            usertext.setText("ユーザー名");
-
-            TextView passtext = (TextView) findViewById(R.id.passtext);
-            passtext.setText("パスワード");
+//            TextView logintext = (TextView) findViewById(R.id.logintext);
+//            logintext.setText("ユーザー登録");
+//
+//            TextView usertext = (TextView) findViewById(R.id.usertext);
+//            usertext.setText("ユーザー名");
+//
+//            TextView passtext = (TextView) findViewById(R.id.passtext);
+//            passtext.setText("パスワード");
 
 
             EditText et = (EditText) findViewById(R.id.useredit);
             EditText et2 = (EditText) findViewById(R.id.passedit);
-            et.setWidth(500);
-            et2.setWidth(500);
+            et.setWidth(1000);
+            et2.setWidth(1000);
+            et.setTextColor(Color.BLACK);
+            et2.setTextColor(Color.BLACK);
             //入力文字数制限
             InputFilter[] _inputFilter = new InputFilter[1];
             _inputFilter[0] = new InputFilter.LengthFilter(8); //文字数指定

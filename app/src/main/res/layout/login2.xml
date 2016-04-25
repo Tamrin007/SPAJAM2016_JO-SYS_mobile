@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:transitionGroup="false"
+    android:background="#ffffff">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.05" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:id="@+id/title_login"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="Welcome"
+            android:id="@+id/text_welcome_login"
+            android:gravity="bottom|center_horizontal"
+            android:textSize="60px"
+            android:textColor="#22b14c"
+            android:layout_weight="0.4" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="to"
+            android:id="@+id/text_to_login"
+            android:gravity="center"
+            android:textSize="45px"
+            android:textColor="#22b14c"
+            android:layout_weight="0.25" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="SOUNDS GOOD !"
+            android:id="@+id/text_soundsgood_login"
+            android:gravity="top|center_horizontal"
+            android:textSize="60px"
+            android:textColor="#22b14c"
+            android:layout_weight="0.3" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.1" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.1"
+        android:gravity="center_vertical"
+        android:weightSum="1"
+        android:id="@+id/id_login">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="ID"
+            android:id="@+id/text_id"
+            android:layout_gravity="center"
+            android:layout_weight="0.3"
+            android:gravity="center"
+            android:textColor="#22b14c"
+            android:textSize="40px" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/useredit"
+            android:layout_weight="0.45"
+            android:background="#cfcfcf" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.1"
+        android:gravity="center_vertical"
+        android:weightSum="1"
+        android:id="@+id/pass_login" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="PASS"
+            android:id="@+id/text_password_login"
+            android:layout_gravity="center"
+            android:layout_weight="0.3"
+            android:gravity="center"
+            android:textColor="#22b14c"
+            android:textSize="40px" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/passedit"
+            android:layout_weight="0.45"
+            android:background="#cfcfcf" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.1"
+        android:gravity="center"
+        android:weightSum="1"
+        android:id="@+id/button_login">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="GO"
+            android:id="@+id/loginbutton"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.35"
+            android:background="#22b14c"
+            android:gravity="center"
+            android:textColor="#ffff"
+            android:textSize="40px" />
+
+    </LinearLayout>
+
+</LinearLayout>

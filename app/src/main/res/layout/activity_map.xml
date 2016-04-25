@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.jo_sys.android.soundsgood.MainActivity">
+    tools:context="com.jo_sys.android.soundsgood.MainActivity"
+    android:background="#ffffff">
 
     <LinearLayout
         android:orientation="vertical"

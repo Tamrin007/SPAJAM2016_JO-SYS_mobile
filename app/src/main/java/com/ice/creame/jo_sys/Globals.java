@@ -13,6 +13,7 @@ public class Globals extends Application {
     String latitude = "0";
     String longitude = "0";
     String address = "位置情報取得中…";
+    String postFilePath = "";
 
 
     //ぜんぶ初期化するメソッド
