@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:gravity="center_horizontal"
+    android:background="#ffffff">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:weightSum="1"
+        android:layout_weight="0.8"
+        android:gravity="center"
+        android:id="@+id/listen_menu">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:weightSum="1"
+            android:gravity="center"
+            android:id="@+id/listen2_menu">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.06">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Large Text"
+                    android:id="@+id/usertext"
+                    android:layout_gravity="center" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.4"
+                android:id="@+id/top_button_menu">
+
+                <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.45"
+                    android:id="@+id/mapbutton"
+                    android:text="近くでさがす"
+                    android:adjustViewBounds="false"
+                    android:scaleType="fitXY"
+                    android:background="#22b14c"
+                    android:src="@drawable/around_button01" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1" />
+
+                <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/bt_keyword_menu"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="0.45"
+                    android:background="#22b14c" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="0.05" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.4"
+                android:weightSum="1"
+                android:id="@+id/buttom_button_menu">
+
+                <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/mylistbutton"
+                    android:layout_weight="0.45"
+                    android:background="#22b14c" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.1" />
+
+                <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.45"
+                    android:background="#22b14c"
+                    android:id="@+id/settingbutton" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.2"
+        android:weightSum="1"
+        android:gravity="center"
+        android:id="@+id/record_menu">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:weightSum="1"
+            android:gravity="center"
+            android:id="@+id/record2_menu">
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/recordbutton"
+                android:layout_weight="0.7"
+                android:layout_gravity="center"
+                android:background="#22b14c"
+                android:longClickable="true"
+                android:src="@drawable/abc_ic_voice_search_api_mtrl_alpha"
+                android:scaleType="fitCenter" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

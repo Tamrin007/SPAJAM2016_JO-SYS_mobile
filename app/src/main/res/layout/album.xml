@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.1"
+        android:id="@+id/back_album" >
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="◀back"
+            android:id="@+id/bt_back_album"
+            android:background="#22b14c"
+            android:textColor="#ffff"
+            android:gravity="left"
+            android:textSize="30px" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.7"
+        android:id="@+id/sounds_album">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView_sounds_album" >
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/element_album"
+                android:weightSum="1"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="title"
+                    android:id="@+id/text_album"
+                    android:layout_weight="0.8"
+                    android:textSize="30px" />
+
+                <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/bt_sounds_album"
+                    android:layout_weight="0.1"
+                    android:background="#22b14c"
+                    android:layout_margin="2dp"
+                    android:src="@drawable/sound01"
+                    android:scaleType="fitCenter" />
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.2"
+        android:weightSum="1"
+        android:gravity="center"
+        android:id="@+id/record_album" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:weightSum="1"
+            android:gravity="center"
+            android:id="@+id/record2_album" >
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.7"
+                android:layout_gravity="center"
+                android:background="#22b14c"
+                android:longClickable="true"
+                android:src="@drawable/abc_ic_voice_search_api_mtrl_alpha"
+                android:scaleType="fitCenter"
+                android:id="@+id/bt_record_album" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
